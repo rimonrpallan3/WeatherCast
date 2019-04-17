@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_10"
+    android:layout_marginRight="@dimen/_10"
+    android:id="@+id/llForecastContent"
+    android:background="?selectableItemBackground"
+    android:orientation="vertical">
+
+
+    <View
+        android:layout_marginTop="@dimen/_10"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:background="@color/dividerColor"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/tvHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_10"
+        android:text="Content"/>
+    <TextView
+        android:id="@+id/tvSubHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/_10"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:text="Content"/>
+
+    <View
+        android:layout_marginTop="@dimen/_10"
+        android:layout_width="match_parent"
+        android:background="@color/dividerColor"
+        android:layout_height="1dp"/>
+
+</LinearLayout>
