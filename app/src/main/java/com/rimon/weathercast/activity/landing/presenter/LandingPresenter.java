@@ -41,23 +41,22 @@ public class LandingPresenter implements ILandingPresenter{
     }
 
     public void getWeatherForecastWebService(String lat, String lng){
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission( activity, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission( activity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if ( Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission( activity, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission( activity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if(NetworkDetector.haveNetworkConnection(activity)){
                 getData(lat,lng);
             }else {
                 Snackbar.make(activity.findViewById(android.R.id.content), activity.getResources().getString(R.string.snack_error_network), Snackbar.LENGTH_LONG).show();
+                iLandingView.showError();
             }
         }else {
-            iLandingView.showError();
+            getData(lat,lng);
         }
 
     }
     public void getData(String lat, String lng){
         Retrofit retrofit = new ApiClient().getRetrofitClient();
         final WebServices webServices = retrofit.create(WebServices.class);
-        Observable<CurrentWeather> likedObservable = webServices.getForecastList(apiKey,lat+lng,apiForecastCount);
+        Observable<CurrentWeather> likedObservable = webServices.getForecastList(apiKey,lat+","+lng,apiForecastCount);
         likedObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(fetchForecastList());
@@ -69,7 +68,7 @@ public class LandingPresenter implements ILandingPresenter{
             @Override
             public void onSubscribe(Disposable d) {
                 iLandingView.unSubscribeCalls(d);
-                Log.d("LocationPresenter", " onSubscribe : " + d.isDisposed());
+                Log.d("fetchForecastList", " onSubscribe : " + d.isDisposed());
             }
 
             @Override
@@ -78,12 +77,12 @@ public class LandingPresenter implements ILandingPresenter{
                 CurrentWeather currentWeather= value;
                 iLandingView.setDataList(currentWeather);
 
-                Log.d("LocationPresenter", " onNext : value : " + value);
+                Log.d("fetchForecastList", " onNext : value : " + value);
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.d("LocationPresenter", " onError : " + e.getMessage());
+                Log.d("fetchForecastList", " onError : " + e.getMessage());
                 iLandingView.showError();
                 Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
             }

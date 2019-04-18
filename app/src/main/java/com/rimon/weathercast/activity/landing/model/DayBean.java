@@ -34,8 +34,8 @@ public class DayBean {
     private double totalprecip_mm;
     private double totalprecip_in;
     private double avgvis_km;
-    private int avgvis_miles;
-    private int avghumidity;
+    private double avgvis_miles;
+    private double avghumidity;
     private ConditionBean condition;
     private double uv;
 
@@ -127,19 +127,19 @@ public class DayBean {
         this.avgvis_km = avgvis_km;
     }
 
-    public int getAvgvis_miles() {
+    public double getAvgvis_miles() {
         return avgvis_miles;
     }
 
-    public void setAvgvis_miles(int avgvis_miles) {
+    public void setAvgvis_miles(double avgvis_miles) {
         this.avgvis_miles = avgvis_miles;
     }
 
-    public int getAvghumidity() {
+    public double getAvghumidity() {
         return avghumidity;
     }
 
-    public void setAvghumidity(int avghumidity) {
+    public void setAvghumidity(double avghumidity) {
         this.avghumidity = avghumidity;
     }
 
@@ -158,5 +158,4 @@ public class DayBean {
     public void setUv(double uv) {
         this.uv = uv;
     }
-
 }

@@ -7,6 +7,11 @@
 
     <!--Landing Page-->
     <string name="api_forecast_count">4</string>
+    <string name="loc_perm">Please grand location permission</string>
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core
+        functionality.</string>
+    <string name="settings">Settings</string>
 
     <!--Error page-->
     <string name="error_heading">Something went wrong at our end!</string>
@@ -15,6 +20,7 @@
     <string name="snack_error_network">Please turn on your net.</string>
     <string name="snack_error_network_available">Thanks for turning on the Network.</string>
     <string name="snack_error_location">Please Enable Location</string>
-    <string name="snack_error_location_null">Loc Null</string>
+    <string name="snack_error_location_null">Please Enable Location And Internet</string>
+
 
 </resources>

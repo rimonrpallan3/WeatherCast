@@ -33,26 +33,26 @@ public class CurrentBean {
 
     private int last_updated_epoch;
     private String last_updated;
-    private int temp_c;
+    private double temp_c;
     private double temp_f;
-    private int is_day;
+
     private ConditionBean condition;
-    private int wind_mph;
-    private int wind_kph;
-    private int wind_degree;
+    private double wind_mph;
+    private double wind_kph;
+    private double wind_degree;
     private String wind_dir;
-    private int pressure_mb;
+    private double pressure_mb;
     private double pressure_in;
     private double precip_mm;
     private double precip_in;
-    private int humidity;
-    private int cloud;
+    private double humidity;
+    private double cloud;
     private double feelslike_c;
     private double feelslike_f;
-    private int vis_km;
-    private int vis_miles;
-    private int uv;
-    private int gust_mph;
+    private double vis_km;
+    private double vis_miles;
+    private double uv;
+    private double gust_mph;
     private double gust_kph;
 
     public int getLast_updated_epoch() {
@@ -71,11 +71,11 @@ public class CurrentBean {
         this.last_updated = last_updated;
     }
 
-    public int getTemp_c() {
+    public double getTemp_c() {
         return temp_c;
     }
 
-    public void setTemp_c(int temp_c) {
+    public void setTemp_c(double temp_c) {
         this.temp_c = temp_c;
     }
 
@@ -87,14 +87,6 @@ public class CurrentBean {
         this.temp_f = temp_f;
     }
 
-    public int getIs_day() {
-        return is_day;
-    }
-
-    public void setIs_day(int is_day) {
-        this.is_day = is_day;
-    }
-
     public ConditionBean getCondition() {
         return condition;
     }
@@ -103,27 +95,27 @@ public class CurrentBean {
         this.condition = condition;
     }
 
-    public int getWind_mph() {
+    public double getWind_mph() {
         return wind_mph;
     }
 
-    public void setWind_mph(int wind_mph) {
+    public void setWind_mph(double wind_mph) {
         this.wind_mph = wind_mph;
     }
 
-    public int getWind_kph() {
+    public double getWind_kph() {
         return wind_kph;
     }
 
-    public void setWind_kph(int wind_kph) {
+    public void setWind_kph(double wind_kph) {
         this.wind_kph = wind_kph;
     }
 
-    public int getWind_degree() {
+    public double getWind_degree() {
         return wind_degree;
     }
 
-    public void setWind_degree(int wind_degree) {
+    public void setWind_degree(double wind_degree) {
         this.wind_degree = wind_degree;
     }
 
@@ -135,11 +127,11 @@ public class CurrentBean {
         this.wind_dir = wind_dir;
     }
 
-    public int getPressure_mb() {
+    public double getPressure_mb() {
         return pressure_mb;
     }
 
-    public void setPressure_mb(int pressure_mb) {
+    public void setPressure_mb(double pressure_mb) {
         this.pressure_mb = pressure_mb;
     }
 
@@ -167,19 +159,19 @@ public class CurrentBean {
         this.precip_in = precip_in;
     }
 
-    public int getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(int humidity) {
+    public void setHumidity(double humidity) {
         this.humidity = humidity;
     }
 
-    public int getCloud() {
+    public double getCloud() {
         return cloud;
     }
 
-    public void setCloud(int cloud) {
+    public void setCloud(double cloud) {
         this.cloud = cloud;
     }
 
@@ -199,35 +191,35 @@ public class CurrentBean {
         this.feelslike_f = feelslike_f;
     }
 
-    public int getVis_km() {
+    public double getVis_km() {
         return vis_km;
     }
 
-    public void setVis_km(int vis_km) {
+    public void setVis_km(double vis_km) {
         this.vis_km = vis_km;
     }
 
-    public int getVis_miles() {
+    public double getVis_miles() {
         return vis_miles;
     }
 
-    public void setVis_miles(int vis_miles) {
+    public void setVis_miles(double vis_miles) {
         this.vis_miles = vis_miles;
     }
 
-    public int getUv() {
+    public double getUv() {
         return uv;
     }
 
-    public void setUv(int uv) {
+    public void setUv(double uv) {
         this.uv = uv;
     }
 
-    public int getGust_mph() {
+    public double getGust_mph() {
         return gust_mph;
     }
 
-    public void setGust_mph(int gust_mph) {
+    public void setGust_mph(double gust_mph) {
         this.gust_mph = gust_mph;
     }
 
@@ -238,6 +230,4 @@ public class CurrentBean {
     public void setGust_kph(double gust_kph) {
         this.gust_kph = gust_kph;
     }
-
-
 }

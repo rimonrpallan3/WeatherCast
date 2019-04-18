@@ -13,11 +13,12 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface WebServices {
 
-    @GET("forecast.json?key={key}&q={loc}&day={no}")
-    Observable<CurrentWeather> getForecastList(@Path("key") String key, @Path("loc") String loc, @Path("no") String num);
+    @GET("forecast.json")
+    Observable<CurrentWeather> getForecastList(@Query("key") String key, @Query("q") String loc, @Query("days") String num);
 
 
 /*
