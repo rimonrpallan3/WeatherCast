@@ -8,6 +8,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
@@ -41,7 +44,9 @@ import io.reactivex.disposables.Disposable;
  * Created by rimon on 17-04-2019.
  */
 
-public class LandingActivity extends AppCompatActivity implements LocationListener, ILandingView {
+public class LandingActivity extends AppCompatActivity implements LocationListener, ILandingView,GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,ActivityCompat.OnRequestPermissionsResultCallback,
+        PermissionUtils.PermissionResultCallback {
 
     RecyclerView rvForecastList;
     TextView tvPlace;
@@ -76,6 +81,7 @@ public class LandingActivity extends AppCompatActivity implements LocationListen
     PermissionUtils permissionUtils;
 
     boolean isPermissionGranted;
+    /*https://github.com/jaisonfdo/LocationHelper*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,5 +218,40 @@ public class LandingActivity extends AppCompatActivity implements LocationListen
         super.onDestroy();
         if(dMainListObservable!=null)
             dMainListObservable.dispose();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void PermissionGranted(int request_code) {
+
+    }
+
+    @Override
+    public void PartialPermissionGranted(int request_code, ArrayList<String> granted_permissions) {
+
+    }
+
+    @Override
+    public void PermissionDenied(int request_code) {
+
+    }
+
+    @Override
+    public void NeverAskAgain(int request_code) {
+
     }
 }
