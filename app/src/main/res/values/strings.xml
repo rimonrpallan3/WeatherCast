@@ -1,2 +1,20 @@
 <resources>
+
+
+    <string name="gps_network_not_enabled">Please Enable Location</string>
+    <string name="open_location_settings">Location Settings</string>
+    <string name="Cancel">Cancel</string>
+
+    <!--Landing Page-->
+    <string name="api_forecast_count">4</string>
+
+    <!--Error page-->
+    <string name="error_heading">Something went wrong at our end!</string>
+    <string name="error_btn">Retry</string>
+
+    <string name="snack_error_network">Please turn on your net.</string>
+    <string name="snack_error_network_available">Thanks for turning on the Network.</string>
+    <string name="snack_error_location">Please Enable Location</string>
+    <string name="snack_error_location_null">Loc Null</string>
+
 </resources>

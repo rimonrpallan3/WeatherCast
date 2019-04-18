@@ -7,13 +7,13 @@ import java.util.List;
  */
 
 public class ForecastBean {
-    private List<ForecastdayBean> forecastday;
+    private List<ForecastDayBean> forecastday;
 
-    public List<ForecastdayBean> getForecastday() {
+    public List<ForecastDayBean> getForecastday() {
         return forecastday;
     }
 
-    public void setForecastday(List<ForecastdayBean> forecastday) {
+    public void setForecastday(List<ForecastDayBean> forecastday) {
         this.forecastday = forecastday;
     }
 

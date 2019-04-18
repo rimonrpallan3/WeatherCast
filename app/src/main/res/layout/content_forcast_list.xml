@@ -2,43 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/_10"
-    android:layout_marginRight="@dimen/_10"
     android:id="@+id/llForecastContent"
-    android:background="?selectableItemBackground"
+    android:background="@color/white"
+    android:elevation="@dimen/_10"
     android:orientation="vertical">
-
-
-    <View
-        android:layout_marginTop="@dimen/_10"
+    
+    <LinearLayout
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:background="@color/dividerColor"
-        android:layout_height="1dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
 
     <TextView
         android:id="@+id/tvHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="right"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/_10"
-        android:text="Content"/>
+        android:gravity="left"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/first_heading"
+        android:text="Monday"/>
     <TextView
         android:id="@+id/tvSubHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="@dimen/_10"
         android:gravity="right"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
         android:textColor="@color/black"
-        android:text="Content"/>
+        android:text="26 C"/>
+
+    </FrameLayout>
 
     <View
-        android:layout_marginTop="@dimen/_10"
         android:layout_width="match_parent"
         android:background="@color/dividerColor"
         android:layout_height="1dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

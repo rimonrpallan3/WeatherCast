@@ -3,15 +3,7 @@ package com.rimon.weathercast.webservices;
 
 import android.support.annotation.Nullable;
 
-import com.voyager.barasti.activity.PriceDetailPage.model.PriceDetails;
-import com.voyager.barasti.activity.UserPropertyList.model.UserPropertyDetails;
-import com.voyager.barasti.activity.locationListPropety.model.LocDetails;
-import com.voyager.barasti.activity.login.model.UserDetails;
-import com.voyager.barasti.activity.propertyProfilepage.model.HomeDetails;
-import com.voyager.barasti.activity.typelist.model.TypedDetail;
-import com.voyager.barasti.fragment.explore.model.exploreList.LikeUnLike;
-import com.voyager.barasti.fragment.explore.model.exploreList.MainList;
-import com.voyager.barasti.fragment.fav.model.FavDetail;
+import com.rimon.weathercast.activity.landing.model.CurrentWeather;
 
 import java.util.ArrayList;
 
@@ -23,6 +15,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface WebServices {
+
+    @GET("forecast.json?key={key}&q={loc}&day={no}")
+    Observable<CurrentWeather> getForecastList(@Path("key") String key, @Path("loc") String loc, @Path("no") String num);
+
+
 /*
     @FormUrlEncoded
     @POST("home")

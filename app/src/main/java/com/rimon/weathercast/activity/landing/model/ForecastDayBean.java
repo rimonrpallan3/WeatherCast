@@ -4,7 +4,7 @@ package com.rimon.weathercast.activity.landing.model;
  * Created by rimon on 17-04-2019.
  */
 
-public class ForecastdayBean {
+public class ForecastDayBean {
     /**
      * date : 2019-04-17
      * date_epoch : 1555459200

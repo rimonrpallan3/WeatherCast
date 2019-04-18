@@ -21,5 +21,13 @@
     <color name="transparent">#00000000</color>
     <color name="dividerColor">#e0e0e0</color>
     <color name="custom_header_text">#030303</color>
-
+    <!--Landing-->
+    <color name="first_heading">#2a2a2a</color>
+    <color name="second_heading">#556799</color>
+    <color name="first_location">#acacac</color>
+    <color name="header_bg">#f4f5f9</color>
+    <!--Error page-->
+    <color name="error_heading">#FFFFFF</color>
+    <color name="error_bg">#e85959</color>
+    <color name="error_btn">#4a4a4a</color>
 </resources>

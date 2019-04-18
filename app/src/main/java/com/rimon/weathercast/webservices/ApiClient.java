@@ -3,8 +3,8 @@ package com.rimon.weathercast.webservices;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.voyager.barasti.BuildConfig;
-import com.voyager.barasti.appconfig.AppConfig;
+import com.rimon.weathercast.BuildConfig;
+import com.rimon.weathercast.appconfig.AppConfig;
 
 import java.util.concurrent.TimeUnit;
 

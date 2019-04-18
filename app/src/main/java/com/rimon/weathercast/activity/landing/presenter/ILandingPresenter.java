@@ -5,4 +5,6 @@ package com.rimon.weathercast.activity.landing.presenter;
  */
 
 public interface ILandingPresenter {
+    public void getWeatherForecastWebService(String lat, String lng);
+
 }
