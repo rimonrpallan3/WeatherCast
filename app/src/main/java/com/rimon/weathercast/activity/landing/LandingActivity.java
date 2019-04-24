@@ -116,20 +116,26 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
         //iLandingPresenter.getWeatherForecastWebService(String.valueOf(latitude), String.valueOf(longitude));
         System.out.println("LandingActivity getLastLocation");
 
-        mFusedLocationClient.getLastLocation()
-                .addOnCompleteListener(this, new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            mLastLocation = task.getResult();
-                            System.out.println("LandingActivity getLatitude : "+mLastLocation.getLatitude()+", getLongitude : "+mLastLocation.getLongitude());
-                            iLandingPresenter.getWeatherForecastWebService(String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()));
-                        } else {
-                            Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_location_null), Snackbar.LENGTH_LONG).show();
-                            showError();
+        if(NetworkDetector.haveNetworkConnection(this)) {
+
+            mFusedLocationClient.getLastLocation()
+                    .addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
+                            if (task.isSuccessful() && task.getResult() != null) {
+                                mLastLocation = task.getResult();
+                                System.out.println("LandingActivity getLatitude : " + mLastLocation.getLatitude() + ", getLongitude : " + mLastLocation.getLongitude());
+                                iLandingPresenter.getWeatherForecastWebService(String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()));
+                            } else {
+                                Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_location_null), Snackbar.LENGTH_LONG).show();
+                                showError();
+                            }
                         }
-                    }
-                });
+                    });
+        }else {
+            Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_network_available), Snackbar.LENGTH_LONG).show();
+            showError();
+        }
     }
 
    /* @SuppressLint("MissingPermission")
