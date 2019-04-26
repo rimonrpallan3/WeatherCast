@@ -33,7 +33,7 @@ public class AppController extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {
-                mNetworkReceiver = new MyNetworkReceiver();
+                //mNetworkReceiver = new MyNetworkReceiver();
             }
 
             @Override
@@ -44,19 +44,19 @@ public class AppController extends Application {
             @Override
             public void onActivityResumed(Activity activity) {
                 mActivity = activity;
-                registerNetworkBroadcastForNougat();
+                //mNetworkReceiver = new MyNetworkReceiver();
+               // registerNetworkBroadcastForNougat();
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
                 mActivity = null;
-                unregisterReceiver(mNetworkReceiver);
+                //unregisterReceiver(mNetworkReceiver);
                 Log.d("MyApplicationTest", "onActivityResumed: un-registered");
             }
 
             @Override
             public void onActivityStopped(Activity activity) {
-
             }
 
             @Override
@@ -66,7 +66,7 @@ public class AppController extends Application {
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+               // unregisterReceiver(mNetworkReceiver);
             }
         });
     }
@@ -75,6 +75,7 @@ public class AppController extends Application {
         //others
         AppConfig.BASE_URL=getResources().getString(R.string.BASE_URL);
         AppConfig.API_KEY=getResources().getString(R.string.api_key);
+        AppConfig.API_FORECAST_COUNT=getResources().getString(R.string.api_forecast_count);
     }
 
     private void appInit(){

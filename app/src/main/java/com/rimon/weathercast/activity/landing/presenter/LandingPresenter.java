@@ -59,7 +59,7 @@ public class LandingPresenter implements ILandingPresenter{
                 getData(lat,lng,apiKey,apiForecastCount);
             }else {
                 //Snackbar.make(activity.findViewById(android.R.id.content), activity.getResources().getString(R.string.snack_error_network), Snackbar.LENGTH_LONG).show();
-                iLandingView.showError();
+                iLandingView.showError("");
             }
         }else {
             getData(lat,lng,apiKey,apiForecastCount);
@@ -96,7 +96,7 @@ public class LandingPresenter implements ILandingPresenter{
             @Override
             public void onError(Throwable e) {
                 Log.d("fetchForecastList", " onError : " + e.getMessage());
-                iLandingView.showError();
+                iLandingView.showError(e.getMessage());
                 //Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 

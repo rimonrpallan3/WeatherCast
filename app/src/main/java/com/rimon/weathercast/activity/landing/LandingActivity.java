@@ -89,9 +89,11 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
         llMainPage = findViewById(R.id.llMainPage);
         btnRetry = findViewById(R.id.btnRetry);
         apikey = AppConfig.API_KEY;
+        apiForecastCount =  AppConfig.API_FORECAST_COUNT;
         System.out.println("LandingActivity"+" BASE_URL : "+AppConfig.BASE_URL);
         System.out.println("LandingActivity"+" API_KEY : "+apikey);
-        apiForecastCount = getResources().getString(R.string.api_forecast_count);
+        System.out.println("LandingActivity"+" API_FORECAST_COUNT : "+apiForecastCount);
+
         iLandingPresenter = new LandingPresenter(this);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -127,16 +129,16 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
                             if (task.isSuccessful() && task.getResult() != null) {
                                 mLastLocation = task.getResult();
                                 System.out.println("LandingActivity getLatitude : " + mLastLocation.getLatitude() + ", getLongitude : " + mLastLocation.getLongitude());
-                                iLandingPresenter.getWeatherForecastWebService(String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()),apiForecastCount,apikey);
+                                iLandingPresenter.getWeatherForecastWebService(String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()),apikey,apiForecastCount);
                             } else {
                                 Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_location_null), Snackbar.LENGTH_LONG).show();
-                                showError();
+                                showError("");
                             }
                         }
                     });
         }else {
             Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_network_available), Snackbar.LENGTH_LONG).show();
-            showError();
+            showError("");
         }
     }
 
@@ -232,7 +234,10 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
 
 
     @Override
-    public void showError() {
+    public void showError(String Message) {
+        if(Message.length()>0) {
+            Snackbar.make(findViewById(android.R.id.content), Message, Snackbar.LENGTH_LONG).show();
+        }
         error.setVisibility(View.VISIBLE);
         llMainPage.setVisibility(View.GONE);
     }
@@ -250,7 +255,7 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
 
     @Override
     public void setDataList(CurrentWeather currentWeather) {
-        if( currentWeather != null ){
+        if( currentWeather.getLocation() != null ){
             tvPlace.setText(currentWeather.getLocation().getName());
             int Temp = (int) currentWeather.getCurrent().getTemp_c();
             tvCTemp.setText(Temp+"");
@@ -260,8 +265,10 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
             rvForecastList.setLayoutManager(mLayoutManager);
             rvForecastList.setItemAnimator(new DefaultItemAnimator());
             rvForecastList.setAdapter(forecastListAdapter);
+        }else if(currentWeather.getError()!=null){
+            showError(currentWeather.getError().getMessage());
         }else {
-            showError();
+            showError("");
         }
 
     }

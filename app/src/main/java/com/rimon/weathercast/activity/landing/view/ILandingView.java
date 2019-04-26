@@ -9,7 +9,7 @@ import io.reactivex.disposables.Disposable;
  */
 
 public interface ILandingView {
-    void showError();
+    void showError(String Message);
     void removeError();
     void unSubscribeCalls(Disposable dMainListObservable);
     void setDataList(CurrentWeather currentWeather);
