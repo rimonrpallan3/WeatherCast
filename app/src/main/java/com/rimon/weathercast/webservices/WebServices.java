@@ -1,23 +1,18 @@
 package com.rimon.weathercast.webservices;
 
 
-import android.support.annotation.Nullable;
-
 import com.rimon.weathercast.activity.landing.model.CurrentWeather;
 
-import java.util.ArrayList;
 
 import io.reactivex.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
+
+import static com.rimon.weathercast.appconfig.Constances.API.API_GET_WEATHER;
 
 public interface WebServices {
 
-    @GET("forecast.json")
+    @GET(API_GET_WEATHER)
     Observable<CurrentWeather> getForecastList(@Query("key") String key, @Query("q") String loc, @Query("days") String num);
 
 

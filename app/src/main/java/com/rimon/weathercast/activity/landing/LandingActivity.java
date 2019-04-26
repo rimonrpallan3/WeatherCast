@@ -88,12 +88,14 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
         error = findViewById(R.id.error);
         llMainPage = findViewById(R.id.llMainPage);
         btnRetry = findViewById(R.id.btnRetry);
-        apikey = getResources().getString(R.string.api_key);
+        apikey = AppConfig.API_KEY;
+        System.out.println("LandingActivity"+" BASE_URL : "+AppConfig.BASE_URL);
+        System.out.println("LandingActivity"+" API_KEY : "+apikey);
         apiForecastCount = getResources().getString(R.string.api_forecast_count);
         iLandingPresenter = new LandingPresenter(this, this, apikey, apiForecastCount);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        AppConfig.BASE_URL=getResources().getString(R.string.BASE_URL);
+
 
         //getLastLocation();
     }

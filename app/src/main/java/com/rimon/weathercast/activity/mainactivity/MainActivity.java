@@ -1,7 +1,9 @@
-package com.rimon.weathercast;
+package com.rimon.weathercast.activity.mainactivity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.rimon.weathercast.R;
 
 public class MainActivity extends AppCompatActivity {
 
