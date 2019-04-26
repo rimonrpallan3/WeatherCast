@@ -92,7 +92,7 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
         System.out.println("LandingActivity"+" BASE_URL : "+AppConfig.BASE_URL);
         System.out.println("LandingActivity"+" API_KEY : "+apikey);
         apiForecastCount = getResources().getString(R.string.api_forecast_count);
-        iLandingPresenter = new LandingPresenter(this, this, apikey, apiForecastCount);
+        iLandingPresenter = new LandingPresenter(this);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
 
@@ -127,7 +127,7 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
                             if (task.isSuccessful() && task.getResult() != null) {
                                 mLastLocation = task.getResult();
                                 System.out.println("LandingActivity getLatitude : " + mLastLocation.getLatitude() + ", getLongitude : " + mLastLocation.getLongitude());
-                                iLandingPresenter.getWeatherForecastWebService(String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()));
+                                iLandingPresenter.getWeatherForecastWebService(String.valueOf(mLastLocation.getLatitude()), String.valueOf(mLastLocation.getLongitude()),apiForecastCount,apikey);
                             } else {
                                 Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_location_null), Snackbar.LENGTH_LONG).show();
                                 showError();
