@@ -53,6 +53,16 @@ public class LandingPresenter implements ILandingPresenter{
         this.apiForecastCount = apiForecastCount;
     }
 
+    @Override
+    public void onViewAttached(ILandingView iLandingView, boolean isNew) {
+
+    }
+
+    @Override
+    public void onViewDetached() {
+
+    }
+
     public void getWeatherForecastWebService(String lat, String lng, String apiKey, String apiForecastCount){
         if ( Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission( activity, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission( activity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if(NetworkDetector.haveNetworkConnection(activity)){

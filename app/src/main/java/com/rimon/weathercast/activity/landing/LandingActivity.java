@@ -57,6 +57,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class LandingActivity extends AppCompatActivity implements ILandingView{
 
     RecyclerView rvForecastList;
+    private boolean isNewActivity;
     TextView tvPlace;
     TextView tvCTemp;
     LinearLayout error;
@@ -82,6 +83,7 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+        isNewActivity = (savedInstanceState == null);
         rvForecastList = findViewById(R.id.rvForecastList);
         tvPlace = findViewById(R.id.tvPlace);
         tvCTemp = findViewById(R.id.tvCTemp);
@@ -102,9 +104,13 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
         //getLastLocation();
     }
 
+
+
     @Override
     public void onStart() {
         super.onStart();
+        iLandingPresenter.onViewAttached(this, isNewActivity);
+        isNewActivity = false;
         if (!checkPermissions()) {
             requestPermissions();
         } else {
@@ -142,86 +148,6 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
         }
     }
 
-   /* @SuppressLint("MissingPermission")
-    @AfterPermissionGranted(RC_LOC_PERM)
-    public void getLocDetails(){
-        if(NetworkDetector.haveNetworkConnection(this)) {
-            //iLandingPresenter.getWeatherForecastWebService(String.valueOf(latitude), String.valueOf(longitude));
-
-            String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-            if (EasyPermissions.hasPermissions(this, perms)) {
-                mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                //mLocationManager.requestLocationUpdates(provider, 0, 0, (LocationListener) this);
-                fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-                location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if (location != null) {
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
-
-                    // Logic to handle location object
-                } else {
-                    LocationListener locationListener = new LocationListener() {
-                        public void onLocationChanged(Location location) {
-                            // Called when a new location is found by the network location provider.
-                            if (location != null) {
-                                latitude = location.getLatitude();
-                                longitude = location.getLongitude();
-                                iLandingPresenter.getWeatherForecastWebService(String.valueOf(latitude), String.valueOf(longitude));
-                            }else {
-                                showError();
-                                Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_location_null), Snackbar.LENGTH_LONG).show();
-                            }
-                        }
-
-                        public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-                        public void onProviderEnabled(String provider) {}
-
-                        public void onProviderDisabled(String provider) {}
-                    };
-
-                // Register the listener with the Location Manager to receive location updates
-                    mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-
-                }
-               *//* fusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-
-                            @Override
-                            public void onSuccess(Location location) {
-                                // Got last known location. In some rare situations this can be null.
-                                if (location != null) {
-                                    latitude = location.getLatitude();
-                                    longitude = location.getLongitude();
-                                    iLandingPresenter.getWeatherForecastWebService(String.valueOf(latitude), String.valueOf(longitude));
-                                    // Logic to handle location object
-                                } else {
-                                    showError();
-                                    Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_location_null), Snackbar.LENGTH_LONG).show();
-
-                                }
-                            }
-                        });*//*
-
-            } else {
-                // Ask for one permission
-                showError();
-                EasyPermissions.requestPermissions(this, getString(R.string.loc_perm),
-                        RC_LOC_PERM, perms);
-            }
-        } else {
-            Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_network), Snackbar.LENGTH_LONG).show();
-        }
-
-        *//*if(location!=null) {
-            removeError();
-            iLandingPresenter.getWeatherForecastWebService(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
-        }else {
-            showError();
-            Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.snack_error_location_null), Snackbar.LENGTH_LONG).show();
-        }*//*
-    }
-*/
 
 
 
@@ -271,6 +197,10 @@ public class LandingActivity extends AppCompatActivity implements ILandingView{
             showError("");
         }
 
+    }
+    @Override protected void onStop() {
+        super.onStop();
+        iLandingPresenter.onViewDetached();
     }
 
     @Override
